@@ -150,14 +150,15 @@ def bfs(graph, start):
 
     while queue:
         vertex = queue.popleft()
-        if vertex not in visited:
-            visited.add(vertex)
-            path.append(vertex)
+        if vertex in visited:
+            continue
 
-            neighbors = sorted(graph[vertex])
-            for neighbor in neighbors:
-                if neighbor in visited:
-                    continue
+        visited.add(vertex)
+        path.append(vertex)
+
+        neighbors = sorted(graph[vertex])
+        for neighbor in neighbors:
+            if neighbor not in visited:
                 queue.append(neighbor)
 
     return path
